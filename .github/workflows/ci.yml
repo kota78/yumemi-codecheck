@@ -1,0 +1,45 @@
+name: Flutter CI
+
+# mainブランチの品質を保つための自動コードチェックです。
+# Pull Request (マージ前) と mainへのPush (マージ後) で実行され、
+# フォーマット、テスト、ビルドの正常性を保証します。
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. リポジトリのコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Flutter SDKをセットアップ
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      # 3. 依存パッケージをインストール
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. コードフォーマットをチェック
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      # 5. 静的解析（Linter）を実行
+      - name: Run analyzer
+        run: flutter analyze
+
+      # 6. テストを実行
+      - name: Run tests
+        run: flutter test
+
+      # 7. AndroidのDebugビルドを実行
+      - name: Build APK
+        run: flutter build apk --debug
