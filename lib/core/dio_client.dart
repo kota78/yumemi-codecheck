@@ -20,7 +20,7 @@ class DioClient {
 
   /// GETリクエスト
   ///
-  /// 成功した場合は Response<T> を、失敗した場合は ApiException をスローします。
+  /// 成功した場合は Response T を、失敗した場合は ApiException をスローします。
   Future<Response<T>> get<T>(
     String path, {
     Map<String, dynamic>? queryParameters,
@@ -34,7 +34,7 @@ class DioClient {
 
   /// POSTリクエスト
   ///
-  /// 成功した場合は Response<T> を、失敗した場合は ApiException をスローします。
+  /// 成功した場合は Response T を、失敗した場合は ApiException をスローします。
   Future<Response<T>> post<T>(
     String path, {
     dynamic data,
