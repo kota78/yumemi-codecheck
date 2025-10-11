@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:yumemi_codecheck/core/api_exception.dart';
 import 'package:yumemi_codecheck/core/dio_client.dart';
 import 'package:yumemi_codecheck/models/search/repositoriy_list_entity.dart';
@@ -28,6 +29,7 @@ class RepoSearchRepository {
           'per_page': 30, // GitHub APIのデフォルト値
         },
       );
+      debugPrint('page: $page');
 
       final data = response.data;
       if (data == null) {

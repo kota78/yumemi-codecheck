@@ -5,6 +5,11 @@ import 'package:yumemi_codecheck/repositories/github/repo_search_repository_prov
 
 part 'repository_list_view_model.g.dart';
 
+///   GitHub リポジトリ検索結果の一覧をページングで管理する ViewModel。
+///
+/// - 検索クエリ（[query]）をもとに GitHub API からリポジトリ一覧を取得する。
+/// - PagePagingNotifierMixin を利用し、ページング状態を自動管理。
+/// - 検索クエリが空の場合は API を呼ばず、空のリストを返す。
 @riverpod
 class RepositoryListViewModel extends _$RepositoryListViewModel
     with PagePagingNotifierMixin<RepositoryEntity> {
@@ -17,7 +22,6 @@ class RepositoryListViewModel extends _$RepositoryListViewModel
         const PagePagingData(items: [], hasMore: false, page: 1),
       );
     }
-    // 最初のページを取得
     return fetch(page: 1);
   }
 
