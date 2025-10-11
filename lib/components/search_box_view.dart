@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+// リポジトリ名を検索するためのワードを入力するボックス
 class SerchBoxView extends HookWidget {
   const SerchBoxView({super.key, this.onSearch});
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// リポジトリ名の一覧を表示するView
 class RepositoryListView extends StatelessWidget {
   const RepositoryListView({super.key});
 
