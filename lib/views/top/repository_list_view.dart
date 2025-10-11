@@ -17,7 +17,7 @@ class RepositoryListView extends StatelessWidget {
         key: const PageStorageKey<String>('page'),
         itemCount: widgetCount,
         itemBuilder: (context, index) {
-          // インデックスが最後の場合最終アイテムを返す
+          // リストの最後の要素では、PagingHelperView が自動生成した終端ウィジェット（endItemView）を表示する
           if (index == widgetCount - 1) {
             return endItemView;
           }
