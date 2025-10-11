@@ -1,3 +1,4 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:yumemi_codecheck/core/dio_client.dart';
 import 'package:yumemi_codecheck/repositories/github/repo_search_repository.dart';

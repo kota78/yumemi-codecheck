@@ -19,27 +19,34 @@ class SearchPage extends HookConsumerWidget {
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
       ),
       body: const Column(
-        children: [SerchBoxView(), Expanded(child: RepositoryListView())],
+        children: [
+          SerchBoxView(),
+          Expanded(child: RepositoryListView()),
+        ],
       ),
+
       /// リポジトリ検索のデバッグ用ボタン
-      floatingActionButton: FloatingActionButton(onPressed: () async {
-        try {
-          final repository = ref.read(repoSearchRepositoryProvider);
-          final result = await repository.searchRepositories(
-            query: 'flutter',
-          );
-          debugPrint('検索結果: ${result.items.length}件');
-          for (final repo in result.items) {
-            debugPrint('リポジトリ名: ${repo.name}');
-            debugPrint('star: ${repo.stargazersCount}');
-            debugPrint('language: ${repo.language}');
-            debugPrint('owner: ${repo.owner.avatarUrl}');
-            debugPrint('watcher: ${repo.watchersCount}');
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          try {
+            final repository = ref.read(repoSearchRepositoryProvider);
+            final (result, hasMore) = await repository.fetch(
+              page: 0,
+              query: 'flutter',
+            );
+            debugPrint('検索結果: ${result.items.length}件');
+            for (final repo in result.items) {
+              debugPrint('リポジトリ名: ${repo.name}');
+              debugPrint('star: ${repo.stargazersCount}');
+              debugPrint('language: ${repo.language}');
+              debugPrint('owner: ${repo.owner.avatarUrl}');
+              debugPrint('watcher: ${repo.watchersCount}');
+            }
+          } on ApiException catch (e) {
+            debugPrint('エラーが発生しました: $e');
           }
-        } on ApiException catch (e) {
-          debugPrint('エラーが発生しました: $e');
-        }
-      },),
+        },
+      ),
     );
   }
 }
