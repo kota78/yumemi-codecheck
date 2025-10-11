@@ -3,8 +3,8 @@ import 'package:yumemi_codecheck/core/api_exception.dart';
 import 'package:yumemi_codecheck/core/dio_client.dart';
 import 'package:yumemi_codecheck/models/search/repositoriy_list_entity.dart';
 
-class GithubRepository {
-  GithubRepository({required this.dioClient});
+class RepoSearchRepository {
+  RepoSearchRepository({required this.dioClient});
   final DioClient dioClient;
 
   /// GitHubリポジトリを検索する

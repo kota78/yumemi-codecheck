@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yumemi_codecheck/components/search_box_view.dart';
 import 'package:yumemi_codecheck/core/api_exception.dart';
-import 'package:yumemi_codecheck/repositories/data_sources/github_repository_provider.dart';
+import 'package:yumemi_codecheck/repositories/github/repo_search_repository_provider.dart';
 import 'package:yumemi_codecheck/views/top/repository_list_view.dart';
 
 /// 検索ページの骨組み
@@ -24,7 +24,7 @@ class SearchPage extends HookConsumerWidget {
       /// リポジトリ検索のデバッグ用ボタン
       floatingActionButton: FloatingActionButton(onPressed: () async {
         try {
-          final repository = ref.read(githubRepositoryProvider);
+          final repository = ref.read(repoSearchRepositoryProvider);
           final result = await repository.searchRepositories(
             query: 'flutter',
           );
