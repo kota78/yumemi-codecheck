@@ -21,25 +21,27 @@ class ApiException implements Exception {
           message = 'リクエストに失敗しました。(コード: $statusCode)';
         }
       case DioExceptionType.connectionError:
-        message = 'ネットワークに接続できませんでした。接続状況を確認してください。';
+        message = 'ネットワークに接続できませんでした。\n接続状況を確認してください。';
       case DioExceptionType.cancel:
         message = 'リクエストがキャンセルされました。';
       case DioExceptionType.badCertificate:
       case DioExceptionType.unknown:
         message = '予期せぬエラーが発生しました。';
     }
+    final statusCode = error.response?.statusCode;
     final exception = ApiException(
       message,
-      statusCode: error.response?.statusCode,
+      statusCode: statusCode
     );
 
-    debugPrint('⚠️ API Error: ${exception.message} (Original: ${error.type})');
+    debugPrint('⚠️ API Error: ${exception.message} StatusCode: $statusCode');
 
     return exception;
   }
   final String message;
   final int? statusCode;
 
+  // エラー時に表示されるメッセージ
   @override
-  String toString() => 'ApiException: $message (statusCode: $statusCode)';
+  String toString() => message;
 }
