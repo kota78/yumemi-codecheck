@@ -24,10 +24,10 @@ class RepositoryListView extends StatelessWidget {
           return Column(
             children: [
               ListTile(
-                // key: ValueKey(data.items[index].),
+                key: ValueKey(data.items[index].id),
                 title: Text(data.items[index].name),
               ),
-              const Divider(height: 1), 
+              const Divider(height: 1),
             ],
           );
         },

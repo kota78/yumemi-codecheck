@@ -9,6 +9,7 @@ part 'repository_entity.g.dart';
 abstract class RepositoryEntity with _$RepositoryEntity {
   const factory RepositoryEntity({
     required String name, /// リポジトリ名
+    required int id, /// id
     required RepositoryOwnerEntity owner, /// オーナー情報
     required int stargazersCount,  /// Star数
     required int watchersCount,/// Watcher数
