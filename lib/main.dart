@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yumemi_codecheck/views/top/search_page.dart';
+import 'package:yumemi_codecheck/views/search/search_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
