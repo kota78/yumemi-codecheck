@@ -21,9 +21,14 @@ class RepositoryListView extends StatelessWidget {
           if (index == widgetCount - 1) {
             return endItemView;
           }
-          return ListTile(
-            // key: ValueKey(data.items[index].),
-            title: Text(data.items[index].name),
+          return Column(
+            children: [
+              ListTile(
+                // key: ValueKey(data.items[index].),
+                title: Text(data.items[index].name),
+              ),
+              const Divider(height: 1), 
+            ],
           );
         },
       ),
