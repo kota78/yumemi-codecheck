@@ -8,7 +8,7 @@ class RepositoryListView extends StatelessWidget {
     final items = List<String>.generate(10, (i) => 'Repository #${i + 1}');
     return ListView.separated(
       itemCount: items.length,
-      separatorBuilder: (_, __) => const Divider(height: 1),
+      separatorBuilder: (_, _) => const Divider(height: 1),
       itemBuilder: (context, index) => ListTile(title: Text(items[index])),
     );
   }
