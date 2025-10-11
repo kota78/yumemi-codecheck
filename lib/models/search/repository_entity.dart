@@ -7,7 +7,6 @@ part 'repository_entity.g.dart';
 /// 個々のリポジトリ情報を表すEntity
 @freezed
 abstract class RepositoryEntity with _$RepositoryEntity {
-@JsonSerializable(fieldRename: FieldRename.snake)
   const factory RepositoryEntity({
     required String name, /// リポジトリ名
     required RepositoryOwnerEntity owner, /// オーナー情報

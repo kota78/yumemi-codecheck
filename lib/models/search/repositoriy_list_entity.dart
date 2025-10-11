@@ -7,14 +7,12 @@ part 'repositoriy_list_entity.g.dart';
 /// GitHubリポジトリ検索APIのレスポンス全体を表すEntity
 @freezed
 abstract class RepositoryListEntity with _$RepositoryListEntity {
-  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RepositoryListEntity({
     required int totalCount, /// 検索結果の総数
     required List<RepositoryEntity> items,    /// 検索結果のリスト
   }) = _RepositoryListEntity;
   const RepositoryListEntity._();
 
-  /// JSONからインスタンスを生成するfactoryメソッド
   factory RepositoryListEntity.fromJson(Map<String, dynamic> json) =>
       _$RepositoryListEntityFromJson(json);
 }
