@@ -1,22 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-// リポジトリ名を検索するためのワードを入力するボックス
-class SerchBoxView extends HookWidget {
-  const SerchBoxView({super.key, this.onSearch});
+/// リポジトリ名を検索するためのワードを入力するボックス
+class SearchBoxView extends HookWidget {
+  const SearchBoxView({
+    required this.initialValue,
+    required this.onChanged,
+    super.key,
+    this.onClear,
+  });
 
-  final void Function(String)? onSearch;
+  /// 初期表示する文字列
+  final String initialValue;
+
+  /// 入力中に呼ばれるコールバック
+  final ValueChanged<String> onChanged;
+
+  /// クリアボタン押下時に呼ばれる
+  final VoidCallback? onClear;
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController();
-    final text = useState(controller.text);
+    final controller = useTextEditingController(text: initialValue);
+    final text = useState(initialValue);
 
-    useEffect(() {
-      void listener() => text.value = controller.text;
-      controller.addListener(listener);
-      return () => controller.removeListener(listener);
-    }, [controller],);
+    // TextEditingController の変化を監視
+    useEffect(
+      () {
+        void listener() => text.value = controller.text;
+        controller.addListener(listener);
+        return () => controller.removeListener(listener);
+      },
+      [controller],
+    );
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -43,7 +59,7 @@ class SerchBoxView extends HookWidget {
                     contentPadding: EdgeInsets.symmetric(vertical: 14),
                   ),
                   onSubmitted: (value) {
-                    onSearch?.call(value);
+                    onChanged(value.trim());
                     FocusScope.of(context).unfocus();
                   },
                 ),
@@ -53,7 +69,7 @@ class SerchBoxView extends HookWidget {
                   icon: const Icon(Icons.clear),
                   onPressed: () {
                     controller.clear();
-                    onSearch?.call('');
+                    onClear?.call();
                     FocusScope.of(context).unfocus();
                   },
                 ),
