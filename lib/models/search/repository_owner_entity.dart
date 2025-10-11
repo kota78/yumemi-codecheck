@@ -6,7 +6,7 @@ part 'repository_owner_entity.g.dart';
 /// リポジトリのオーナー情報を表すEntity
 @freezed
 abstract class RepositoryOwnerEntity with _$RepositoryOwnerEntity {
-
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RepositoryOwnerEntity({
     required String avatarUrl,/// オーナーのアイコン画像URL
   }) = _RepositoryOwnerEntity;
