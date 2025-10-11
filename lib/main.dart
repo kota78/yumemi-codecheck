@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yumemi_codecheck/views/top/top_page.dart';
+import 'package:yumemi_codecheck/views/top/search_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TopPage(),
+      home: const SearchPage(),
     );
   }
 }

@@ -4,8 +4,8 @@ import 'package:yumemi_codecheck/components/search_box_view.dart';
 import 'package:yumemi_codecheck/views/top/repository_list_view.dart';
 
 /// 検索ページの骨組み
-class TopPage extends HookConsumerWidget {
-  const TopPage({super.key});
+class SearchPage extends HookConsumerWidget {
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
