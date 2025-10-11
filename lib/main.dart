@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yumemi_codecheck/views/top/top_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yumemi_codecheck/views/top/search_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TopPage(),
+      home: const SearchPage(),
     );
   }
 }

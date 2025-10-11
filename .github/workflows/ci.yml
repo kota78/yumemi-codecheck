@@ -28,14 +28,18 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # 4. 静的解析（Linter）を実行
+      # 4. コード生成を実行（このステップを追加）
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      # 5. 静的解析（Linter）を実行
       - name: Run analyzer
         run: flutter analyze
 
-      # 5. テストを実行
+      # 6. テストを実行
       - name: Run tests
         run: flutter test
 
-      # 6. AndroidのDebugビルドを実行
+      # 7. AndroidのDebugビルドを実行
       - name: Build APK
         run: flutter build apk --debug
