@@ -1,19 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yumemi_codecheck/models/search/repository_entity.dart';
 
-part 'github_repositories_entity.freezed.dart';
-part 'github_repositories_entity.g.dart';
+part 'repositoriy_list_entity.freezed.dart';
+part 'repositoriy_list_entity.g.dart';
 
 /// GitHubリポジトリ検索APIのレスポンス全体を表すEntity
 @freezed
-abstract class GitHubRepositoriesEntity with _$GitHubRepositoriesEntity {
-  const factory GitHubRepositoriesEntity({
+abstract class RepositoryListEntity with _$RepositoryListEntity {
+  const factory RepositoryListEntity({
     required int totalCount, /// 検索結果の総数
     required List<RepositoryEntity> items,    /// 検索結果のリスト
-  }) = _GitHubRepositoriesEntity;
-  const GitHubRepositoriesEntity._();
+  }) = _RepositoryListEntity;
+  const RepositoryListEntity._();
 
   /// JSONからインスタンスを生成するfactoryメソッド
-  factory GitHubRepositoriesEntity.fromJson(Map<String, dynamic> json) =>
-      _$GitHubRepositoriesEntityFromJson(json);
+  factory RepositoryListEntity.fromJson(Map<String, dynamic> json) =>
+      _$RepositoryListEntityFromJson(json);
 }
