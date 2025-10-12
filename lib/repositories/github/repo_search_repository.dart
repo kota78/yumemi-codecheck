@@ -37,8 +37,17 @@ class RepoSearchRepository {
       }
 
       final result = RepositoryListEntity.fromJson(data);
-      final hasMore = result.items.length == 30; // 次のページの存在チェック
-      /// TODO: 次ページの有無の判定ロジックを検討。headerから取得できる可能性あり。
+      // --- Linkヘッダーからページ情報を取得 ---
+      bool hasMore;
+      final linkHeader = response.headers.map['link']?.first;
+      if (linkHeader != null) {
+        // "rel=\"next\"" があるか確認
+        hasMore = linkHeader.contains('rel="next"');
+        debugPrint('link header: $linkHeader');
+      } else {
+        hasMore = false;
+      }
+      debugPrint('HasMorePage: $hasMore');
 
       return (result, hasMore);
     } on DioException catch (e) {
