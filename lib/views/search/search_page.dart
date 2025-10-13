@@ -29,7 +29,7 @@ class SearchPage extends HookConsumerWidget {
               ref.read(searchPageViewModelProvider.notifier).clearQuery();
             },
           ),
-          Expanded(child: RepositoryListView(query: query)),
+          Expanded(child: RepoListView(query: query)),
         ],
       ),
     );

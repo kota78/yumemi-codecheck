@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_paging_utils/riverpod_paging_utils.dart';
-import 'package:yumemi_codecheck/view_models/search/repository_list_view_model.dart';
+import 'package:yumemi_codecheck/view_models/search/repo_list_view_model.dart';
+import 'package:yumemi_codecheck/views/detail/detail_page.dart';
 
 /// リポジトリ名の一覧を表示するView
 /// riverpod_paging_utilsパッケージを使用
-class RepositoryListView extends StatelessWidget {
-  const RepositoryListView({required this.query, super.key});
+class RepoListView extends StatelessWidget {
+  const RepoListView({required this.query, super.key});
   final String query;
 
   @override
@@ -17,7 +18,7 @@ class RepositoryListView extends StatelessWidget {
       );
     }
 
-    final provider = repositoryListViewModelProvider(query);
+    final provider = repoListViewModelProvider(query);
     return PagingHelperView(
       provider: provider,
       futureRefreshable: provider.future,
@@ -36,6 +37,14 @@ class RepositoryListView extends StatelessWidget {
               ListTile(
                 key: ValueKey(item.id),
                 title: Text(item.name),
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) => DetailPage(state: item),
+                    ),
+                  );
+                },
               ),
               const Divider(height: 1),
             ],
