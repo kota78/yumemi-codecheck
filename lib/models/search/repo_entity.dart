@@ -6,7 +6,7 @@ part 'repo_entity.g.dart';
 
 /// 個々のリポジトリ情報を表すEntity
 @freezed
-abstract class RepoEntity with _$RepositoryEntity {
+abstract class RepoEntity with _$RepoEntity {
   const factory RepoEntity({
     required String name, /// リポジトリ名
     required int id, /// id
@@ -16,9 +16,9 @@ abstract class RepoEntity with _$RepositoryEntity {
     required int forksCount,  /// Fork数
     required int openIssuesCount, /// オープンなIssue数
     String? language,/// プロジェクト言語
-  }) = _RepositoryEntity;
+  }) = _RepoEntity;
   const RepoEntity._();
 
   factory RepoEntity.fromJson(Map<String, dynamic> json) =>
-      _$RepositoryEntityFromJson(json);
+      _$RepoEntityFromJson(json);
 }

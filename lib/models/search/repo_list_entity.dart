@@ -6,13 +6,13 @@ part 'repo_list_entity.g.dart';
 
 /// GitHubリポジトリ検索APIのレスポンス全体を表すEntity
 @freezed
-abstract class RepoListEntity with _$RepositoryListEntity {
+abstract class RepoListEntity with _$RepoListEntity {
   const factory RepoListEntity({
     required int totalCount, /// 検索結果の総数
     required List<RepoEntity> items,    /// 検索結果のリスト
-  }) = _RepositoryListEntity;
+  }) = _RepoListEntity;
   const RepoListEntity._();
 
   factory RepoListEntity.fromJson(Map<String, dynamic> json) =>
-      _$RepositoryListEntityFromJson(json);
+      _$RepoListEntityFromJson(json);
 }
