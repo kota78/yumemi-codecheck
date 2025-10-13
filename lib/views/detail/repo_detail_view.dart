@@ -46,30 +46,50 @@ class RepoDetailPage extends StatelessWidget {
               ),
             const SizedBox(height: 32),
 
-            // 4. 各種メトリクス (Star, Watcherなど)
-            Wrap(
-              spacing: 28, // アイテム間の横方向のスペース
-              runSpacing: 20, // アイテム間の縦方向のスペース
+            // 4. 各種メトリクス
+            Column(
               children: [
-                _MetricItem(
-                  icon: Icons.star_border,
-                  label: 'Star',
-                  count: state.stargazersCount,
+                // 1行目: Star, Watcher
+                Row(
+                  children: [
+                    Expanded(
+                      child: _MetricItem(
+                        icon: Icons.star_border,
+                        label: 'Star',
+                        count: state.stargazersCount,
+                      ),
+                    ),
+                    const SizedBox(width: 28), // アイテム間の横スペース
+                    Expanded(
+                      child: _MetricItem(
+                        icon: Icons.visibility_outlined,
+                        label: 'Watcher',
+                        count: state.watchersCount,
+                      ),
+                    ),
+                  ],
                 ),
-                _MetricItem(
-                  icon: Icons.visibility_outlined,
-                  label: 'Watcher',
-                  count: state.watchersCount,
-                ),
-                _MetricItem(
-                  icon: Icons.call_split,
-                  label: 'Fork',
-                  count: state.forksCount,
-                ),
-                _MetricItem(
-                  icon: Icons.lens_outlined,
-                  label: 'Issue',
-                  count: state.openIssuesCount,
+                const SizedBox(height: 20), // アイテム間の縦スペース
+
+                // 2行目: Fork, Issue
+                Row(
+                  children: [
+                    Expanded(
+                      child: _MetricItem(
+                        icon: Icons.call_split,
+                        label: 'Fork',
+                        count: state.forksCount,
+                      ),
+                    ),
+                    const SizedBox(width: 28), // アイテム間の横スペース
+                    Expanded(
+                      child: _MetricItem(
+                        icon: Icons.lens_outlined,
+                        label: 'Issue',
+                        count: state.openIssuesCount,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
