@@ -3,7 +3,7 @@ import 'package:riverpod_paging_utils/riverpod_paging_utils.dart';
 import 'package:yumemi_codecheck/models/search/repository_entity.dart';
 import 'package:yumemi_codecheck/repositories/github/repo_search_repository_provider.dart';
 
-part 'repository_list_view_model.g.dart';
+part 'repo_list_view_model.g.dart';
 
 ///   GitHub リポジトリ検索結果の一覧をページングで管理する ViewModel。
 ///
@@ -11,7 +11,7 @@ part 'repository_list_view_model.g.dart';
 /// - PagePagingNotifierMixin を利用し、ページング状態を自動管理。
 /// - 検索クエリが空の場合は API を呼ばず、空のリストを返す。
 @riverpod
-class RepositoryListViewModel extends _$RepositoryListViewModel
+class RepoListViewModel extends _$RepoListViewModel
     with PagePagingNotifierMixin<RepositoryEntity> {
 
   @override
