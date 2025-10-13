@@ -20,7 +20,13 @@ class RepoDetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 1. リポジトリ名
+            // オーナーアイコン
+            CircleAvatar(
+              radius: 12,
+              backgroundImage: NetworkImage(state.avatarUrl),
+              backgroundColor: Colors.transparent, // 画像読み込み中の背景色
+            ),
+            const SizedBox(height: 20),
             Text(
               state.name,
               style: const TextStyle(
@@ -29,23 +35,15 @@ class RepoDetailPage extends StatelessWidget {
                 height: 1.3, // 行間
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
-            // 2. オーナー情報
-            CircleAvatar(
-                  radius: 12,
-                  backgroundImage: NetworkImage(state.avatarUrl),
-                  backgroundColor: Colors.transparent, // 画像読み込み中の背景色
-                ),
-            const SizedBox(height: 12),
-
-            // 3. プロジェクト言語 (nullの可能性あり)
+            // プロジェクト言語 (nullの可能性あり)
             if (state.language != null && state.language!.isNotEmpty)
               _IconTextItem(
                 icon: Icons.code,
                 text: state.language!,
               ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 20),
 
             // 4. 各種メトリクス
             Column(
@@ -60,7 +58,6 @@ class RepoDetailPage extends StatelessWidget {
                         count: state.stargazersCount,
                       ),
                     ),
-                    const SizedBox(width: 28), // アイテム間の横スペース
                     Expanded(
                       child: _MetricItem(
                         icon: FontAwesomeIcons.eye,
@@ -71,7 +68,6 @@ class RepoDetailPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20), // アイテム間の縦スペース
-
                 // 2行目: Fork, Issue
                 Row(
                   children: [
@@ -82,7 +78,6 @@ class RepoDetailPage extends StatelessWidget {
                         count: state.forksCount,
                       ),
                     ),
-                    const SizedBox(width: 28), // アイテム間の横スペース
                     Expanded(
                       child: _MetricItem(
                         icon: FontAwesomeIcons.circleDot,
