@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yumemi_codecheck/models/detail/repo_detail_state.dart';
 
 /// リポジトリ詳細情報を表示するページ全体
@@ -54,7 +55,7 @@ class RepoDetailPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: _MetricItem(
-                        icon: Icons.star_border,
+                        icon: FontAwesomeIcons.star,
                         label: 'Star',
                         count: state.stargazersCount,
                       ),
@@ -62,7 +63,7 @@ class RepoDetailPage extends StatelessWidget {
                     const SizedBox(width: 28), // アイテム間の横スペース
                     Expanded(
                       child: _MetricItem(
-                        icon: Icons.visibility_outlined,
+                        icon: FontAwesomeIcons.eye,
                         label: 'Watcher',
                         count: state.watchersCount,
                       ),
@@ -76,7 +77,7 @@ class RepoDetailPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: _MetricItem(
-                        icon: Icons.call_split,
+                        icon: FontAwesomeIcons.codeFork,
                         label: 'Fork',
                         count: state.forksCount,
                       ),
@@ -84,7 +85,7 @@ class RepoDetailPage extends StatelessWidget {
                     const SizedBox(width: 28), // アイテム間の横スペース
                     Expanded(
                       child: _MetricItem(
-                        icon: Icons.lens_outlined,
+                        icon: FontAwesomeIcons.circleDot,
                         label: 'Issue',
                         count: state.openIssuesCount,
                       ),

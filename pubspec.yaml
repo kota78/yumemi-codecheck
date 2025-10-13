@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks: ^0.21.3
+  font_awesome_flutter: ^10.10.0
   freezed_annotation: ^3.0.0
   hooks_riverpod: ^2.6.1
   json_annotation: ^4.9.0
