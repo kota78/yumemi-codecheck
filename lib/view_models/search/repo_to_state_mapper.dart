@@ -1,8 +1,8 @@
 import 'package:yumemi_codecheck/models/detail/repo_detail_state.dart';
-import 'package:yumemi_codecheck/models/search/repository_entity.dart';
+import 'package:yumemi_codecheck/models/search/repo_entity.dart';
 
 // データ層のモデル(RepositoryEntity)をUI層が使うための状態(RepoDetailState)に変換するマッパー
-RepoDetailState repoToState(RepositoryEntity entity) {
+RepoDetailState repoToState(RepoEntity entity) {
   return RepoDetailState(
     id: entity.id,
     name: entity.name,

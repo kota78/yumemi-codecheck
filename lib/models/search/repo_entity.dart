@@ -1,24 +1,24 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:yumemi_codecheck/models/search/repository_owner_entity.dart';
+import 'package:yumemi_codecheck/models/search/repo_owner_entity.dart';
 
-part 'repository_entity.freezed.dart';
-part 'repository_entity.g.dart';
+part 'repo_entity.freezed.dart';
+part 'repo_entity.g.dart';
 
 /// 個々のリポジトリ情報を表すEntity
 @freezed
-abstract class RepositoryEntity with _$RepositoryEntity {
-  const factory RepositoryEntity({
+abstract class RepoEntity with _$RepositoryEntity {
+  const factory RepoEntity({
     required String name, /// リポジトリ名
     required int id, /// id
-    required RepositoryOwnerEntity owner, /// オーナー情報
+    required RepoOwnerEntity owner, /// オーナー情報
     required int stargazersCount,  /// Star数
     required int watchersCount,/// Watcher数
     required int forksCount,  /// Fork数
     required int openIssuesCount, /// オープンなIssue数
     String? language,/// プロジェクト言語
   }) = _RepositoryEntity;
-  const RepositoryEntity._();
+  const RepoEntity._();
 
-  factory RepositoryEntity.fromJson(Map<String, dynamic> json) =>
+  factory RepoEntity.fromJson(Map<String, dynamic> json) =>
       _$RepositoryEntityFromJson(json);
 }

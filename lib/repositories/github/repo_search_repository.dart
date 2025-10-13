@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:yumemi_codecheck/core/api_exception.dart';
 import 'package:yumemi_codecheck/core/dio_client.dart';
-import 'package:yumemi_codecheck/models/search/repositoriy_list_entity.dart';
+import 'package:yumemi_codecheck/models/search/repo_list_entity.dart';
 
 class RepoSearchRepository {
   RepoSearchRepository({required this.dioClient});
@@ -16,7 +16,7 @@ class RepoSearchRepository {
   /// 戻り値は (RepositoryListEntity, bool) の形式で、
   /// 2番目の bool は次のページが存在するかどうかを示します。
   /// 失敗した場合は ApiException をスローします。
-  Future<(RepositoryListEntity, bool)> fetch({
+  Future<(RepoListEntity, bool)> fetch({
     required int page,
     required String query,
   }) async {
@@ -36,7 +36,7 @@ class RepoSearchRepository {
         throw ApiException('Response data is null');
       }
 
-      final result = RepositoryListEntity.fromJson(data);
+      final result = RepoListEntity.fromJson(data);
       // --- Linkヘッダーからページ情報を取得 ---
       bool hasMore;
       final linkHeader = response.headers.map['link']?.first;
