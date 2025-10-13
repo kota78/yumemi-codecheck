@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumemi_codecheck/models/detail/repo_detail_state.dart';
+import 'package:yumemi_codecheck/views/detail/repo_detail_view.dart';
 
 /// 詳細ページの全体的なレイアウトを定義するWidget
 /// AppBarと本体(RepoDetailView)で構成される
@@ -40,7 +41,7 @@ class DetailPage extends StatelessWidget {
         ),
       ),
       // 画面の本体
-      body: DetailPage(state: state),
+      body: RepoDetailPage(state: state),
     );
   }
 }

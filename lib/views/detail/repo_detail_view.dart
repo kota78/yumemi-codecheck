@@ -4,12 +4,12 @@ import 'package:yumemi_codecheck/models/detail/repo_detail_state.dart';
 /// リポジトリ詳細情報を表示するページ全体
 class RepoDetailPage extends StatelessWidget {
   const RepoDetailPage({
-    required this.detail,
+    required this.state,
     super.key,
   });
 
   /// 表示対象のリポジトリ詳細データ
-  final RepoDetailState detail;
+  final RepoDetailState state;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class RepoDetailPage extends StatelessWidget {
           children: [
             // 1. リポジトリ名
             Text(
-              detail.name,
+              state.name,
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -33,16 +33,16 @@ class RepoDetailPage extends StatelessWidget {
             // 2. オーナー情報
             CircleAvatar(
                   radius: 12,
-                  backgroundImage: NetworkImage(detail.avatarUrl),
+                  backgroundImage: NetworkImage(state.avatarUrl),
                   backgroundColor: Colors.transparent, // 画像読み込み中の背景色
                 ),
             const SizedBox(height: 12),
 
             // 3. プロジェクト言語 (nullの可能性あり)
-            if (detail.language != null && detail.language!.isNotEmpty)
+            if (state.language != null && state.language!.isNotEmpty)
               _IconTextItem(
                 icon: Icons.code,
-                text: detail.language!,
+                text: state.language!,
               ),
             const SizedBox(height: 32),
 
@@ -54,22 +54,22 @@ class RepoDetailPage extends StatelessWidget {
                 _MetricItem(
                   icon: Icons.star_border,
                   label: 'Star',
-                  count: detail.stargazersCount,
+                  count: state.stargazersCount,
                 ),
                 _MetricItem(
                   icon: Icons.visibility_outlined,
                   label: 'Watcher',
-                  count: detail.watchersCount,
+                  count: state.watchersCount,
                 ),
                 _MetricItem(
                   icon: Icons.call_split,
                   label: 'Fork',
-                  count: detail.forksCount,
+                  count: state.forksCount,
                 ),
                 _MetricItem(
                   icon: Icons.lens_outlined,
                   label: 'Issue',
-                  count: detail.openIssuesCount,
+                  count: state.openIssuesCount,
                 ),
               ],
             ),
