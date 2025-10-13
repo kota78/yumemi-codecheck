@@ -40,7 +40,9 @@ class RepoListView extends StatelessWidget {
                 onTap: () async {
                   await Navigator.push(
                     context,
-                    MaterialPageRoute<void>(builder: (context) => DetailPage(state: item)),
+                    MaterialPageRoute<void>(
+                      builder: (context) => DetailPage(state: item),
+                    ),
                   );
                 },
               ),
