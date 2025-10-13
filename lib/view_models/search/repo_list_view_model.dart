@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_paging_utils/riverpod_paging_utils.dart';
 import 'package:yumemi_codecheck/models/detail/repo_detail_state.dart';
 import 'package:yumemi_codecheck/repositories/github/repo_search_repository_provider.dart';
+import 'package:yumemi_codecheck/view_models/search/repo_to_state_mapper.dart';
 
 part 'repo_list_view_model.g.dart';
 
@@ -31,10 +32,11 @@ class RepoListViewModel extends _$RepoListViewModel
   }) async {
     final repository = ref.read(repoSearchRepositoryProvider);
     final (result, hasMore) = await repository.fetch(page: page, query: query);
+    final detailStates = result.items.map(repoToState).toList();
     ref.keepAlive();
 
     return PagePagingData(
-      items: result.items,
+      items: detailStates,
       hasMore: hasMore,
       page: page,
     );
