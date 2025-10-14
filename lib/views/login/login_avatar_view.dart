@@ -19,7 +19,12 @@ class LoginAvatarView extends HookConsumerWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: NetworkImage(state.avatarUrl),
+                    backgroundImage: (state.avatarUrl.isNotEmpty)
+                        ? NetworkImage(state.avatarUrl)
+                        : null,
+                    child: state.avatarUrl.isEmpty
+                        ? const Icon(Icons.person, size: 40)
+                        : null,
                   ),
                   const SizedBox(height: 12),
                   Text(state.name, style: const TextStyle(fontSize: 18)),
@@ -31,7 +36,10 @@ class LoginAvatarView extends HookConsumerWidget {
                 ],
               )
             : ElevatedButton(
-                onPressed: notifier.login,
+                onPressed: () async {
+                  await notifier.login();
+                  await notifier.fetchUserProfile();
+                },
                 child: const Text('GitHubでログイン'),
               ),
       ),
