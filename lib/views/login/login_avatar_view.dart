@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yumemi_codecheck/models/login/login_state.dart';
 import 'package:yumemi_codecheck/view_models/login/login_avatar_view_model.dart';
 
 class LoginAvatarView extends HookConsumerWidget {
@@ -35,10 +36,11 @@ class LoginAvatarView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(loginAvatarViewModelProvider);
     final notifier = ref.read(loginAvatarViewModelProvider.notifier);
+    final value = state.value ?? LoginState.initial();
 
     return GestureDetector(
       onTap: () async {
-        if (state.isLoggedIn) {
+        if (value.isLoggedIn) {
           await showConfirmDialog(
             context: context,
             title: 'ログアウトしますか？',
@@ -56,10 +58,10 @@ class LoginAvatarView extends HookConsumerWidget {
         padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
         child: CircleAvatar(
           radius: 28,
-          backgroundImage: (state.avatarUrl.isNotEmpty)
-              ? NetworkImage(state.avatarUrl)
+          backgroundImage: (value.avatarUrl.isNotEmpty)
+              ? NetworkImage(value.avatarUrl)
               : null,
-          child: state.avatarUrl.isEmpty
+          child: value.avatarUrl.isEmpty
               ? Icon(
                   Icons.person,
                   size: 28,

@@ -33,6 +33,7 @@ class AccessTokenNotifier extends StateNotifier<String?> {
   Future<void> _loadToken() async {
     final token = await _storage.read(key: _key);
     state = token;
+    debugPrint('Loaded token: $token');
   }
 
   /// トークンを保存
