@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yumemi_codecheck/components/custom_app_bar.dart';
 import 'package:yumemi_codecheck/components/search_box_view.dart';
+import 'package:yumemi_codecheck/models/login/login_state.dart';
 import 'package:yumemi_codecheck/view_models/search/search_page_view_model.dart';
 import 'package:yumemi_codecheck/views/search/repository_list_view.dart';
 
@@ -12,11 +14,12 @@ class SearchPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final query = ref.watch(searchPageViewModelProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Search'),
-        surfaceTintColor: Colors.transparent,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
+      appBar: const CustomAppBar(
+        state: LoginState(
+          isLoggedIn: true,
+          name: 'User',
+          avatarUrl: 'https://picsum.photos/800',
+        ),
       ),
       body: Column(
         children: [
