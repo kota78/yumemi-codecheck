@@ -12,6 +12,7 @@ dependencies:
   dio: ^5.9.0
   flutter:
     sdk: flutter
+  flutter_dotenv: ^6.0.0
   flutter_hooks: ^0.21.3
   font_awesome_flutter: ^10.10.0
   freezed_annotation: ^3.0.0
@@ -33,3 +34,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+
+  assets:
+     - .env
