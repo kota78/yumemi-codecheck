@@ -17,6 +17,8 @@ class ApiException implements Exception {
         final statusCode = error.response?.statusCode;
         if (statusCode != null && statusCode >= 500) {
           message = 'サーバーで問題が発生しました。(コード: $statusCode)';
+        } else if (_isRateLimitExceeded(error)) {
+          message = 'リクエスト超過エラーが発生しました。ユーザーアイコンをタップしてログインすることで緩和されます。';
         } else {
           message = 'リクエストに失敗しました。(コード: $statusCode)';
         }
@@ -44,4 +46,15 @@ class ApiException implements Exception {
   // エラー時に表示されるメッセージ
   @override
   String toString() => message;
+
+    /// GitHubのレートリミット超過エラーかどうかを判定
+  static bool _isRateLimitExceeded(DioException e) {
+    if (e.response?.statusCode != 403) return false;
+    final data = e.response?.data;
+    if (data is Map && data['message'] is String) {
+      final message = data['message'] as String;
+      return message.contains('API rate limit exceeded');
+    }
+    return false;
+  }
 }
