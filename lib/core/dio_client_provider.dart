@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:yumemi_codecheck/components/texts/app_env_keys.dart';
 import 'package:yumemi_codecheck/core/dio_client.dart';
 import 'package:yumemi_codecheck/core/token_storage_provider.dart';
 
 /// 認証付き DioClient Provider
 final dioClientProvider = Provider<DioClient>((ref) {
-  final baseUrl = dotenv.env['API_URL']!;
+  final baseUrl = dotenv.env[AppEnvKeys.apiUrl]!;
   final token = ref.watch(accessTokenProvider);
   final client = DioClient(baseUrl);
 

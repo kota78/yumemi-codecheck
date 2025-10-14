@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart' show DioException, Options;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:yumemi_codecheck/components/texts/app_env_keys.dart';
 import 'package:yumemi_codecheck/core/api_exception.dart';
 import 'package:yumemi_codecheck/core/dio_client.dart';
 import 'package:yumemi_codecheck/core/token_storage_provider.dart';
@@ -14,12 +15,13 @@ class OAuthRepository {
 
   /// GitHub OAuth 認可画面を開き、認可コードを取得
   Future<String> authorize() async {
-    final clientId = dotenv.env['CLIENT_ID']!;
-    final redirectUri = dotenv.env['REDIRECT_URI']!;
+    final clientId = dotenv.env[AppEnvKeys.clientId]!;
+    final redirectUri = dotenv.env[AppEnvKeys.redirectUri]!;
+    final baseUrl = dotenv.env[AppEnvKeys.baseUrl]!;
     const scope = 'read:user,user:email';
 
     final authUrl =
-        'https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirectUri&scope=$scope';
+        '$baseUrl/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirectUri&scope=$scope';
 
     try {
       final result = await FlutterWebAuth2.authenticate(
@@ -40,13 +42,13 @@ class OAuthRepository {
 
   /// 認可コードを使ってアクセストークンを取得・保存
   Future<String> fetchAccessToken(String code) async {
-    final clientId = dotenv.env['CLIENT_ID']!;
-    final clientSecret = dotenv.env['CLIENT_SECRET']!;
-    final redirectUri = dotenv.env['REDIRECT_URI']!;
-
+    final clientId = dotenv.env[AppEnvKeys.clientId]!;
+    final clientSecret = dotenv.env[AppEnvKeys.clientSecret]!;
+    final redirectUri = dotenv.env[AppEnvKeys.redirectUri]!;
+    final baseUrl = dotenv.env[AppEnvKeys.baseUrl]!;
     try {
       final response = await _dioClient.post<Map<String, dynamic>>(
-        'https://github.com/login/oauth/access_token',
+        '$baseUrl/oauth/access_token',
         data: {
           'client_id': clientId,
           'client_secret': clientSecret,
