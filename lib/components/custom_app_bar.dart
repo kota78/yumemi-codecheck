@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:yumemi_codecheck/models/login/login_state.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
-    required this.state,
     this.title = '',
     this.showBackButton = false,
-    super.key,
+    super.key, this.userAvatar,
   });
   final String title;
   final bool showBackButton;
-  final LoginState state;
+  final Widget? userAvatar;
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: showBackButton ? const BackButton() : null,
       // leadingの有無で戻るボタンのスペースが確保されるのを防ぐ
       automaticallyImplyLeading: showBackButton,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: CircleAvatar(
-            backgroundImage: state.isLoggedIn
-                ? NetworkImage(state.avatarUrl)
-                : null,
-            child: state.isLoggedIn ? null : const Icon(Icons.person_outline),
-          ),
-        ),
-      ],
+      actions: userAvatar != null ? [userAvatar!] : [],
     );
   }
 

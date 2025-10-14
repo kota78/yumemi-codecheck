@@ -49,4 +49,14 @@ class LoginAvatarViewModel extends _$LoginAvatarViewModel {
       avatarUrl: entity.avatarUrl,
     );
   }
+
+  // UIから呼び出すコールバック
+  Future<void> onLogin() async {
+    await login();
+    await fetchUserProfile();
+  }
+
+  Future<void> onLogout() async {
+    await logout();
+  }
 }

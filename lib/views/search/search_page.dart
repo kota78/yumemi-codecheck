@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yumemi_codecheck/components/custom_app_bar.dart';
 import 'package:yumemi_codecheck/components/search_box_view.dart';
-import 'package:yumemi_codecheck/models/login/login_state.dart';
 import 'package:yumemi_codecheck/view_models/search/search_page_view_model.dart';
+import 'package:yumemi_codecheck/views/login/login_avatar_view.dart';
 import 'package:yumemi_codecheck/views/search/repository_list_view.dart';
 
 /// 検索ページの骨組み
@@ -15,11 +15,8 @@ class SearchPage extends HookConsumerWidget {
     final query = ref.watch(searchPageViewModelProvider);
     return Scaffold(
       appBar: const CustomAppBar(
-        state: LoginState(
-          isLoggedIn: true,
-          name: 'User',
-          avatarUrl: 'https://picsum.photos/800',
-        ),
+        title: 'Search Repository',
+        userAvatar: LoginAvatarView(),
       ),
       body: Column(
         children: [
