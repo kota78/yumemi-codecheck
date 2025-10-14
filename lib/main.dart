@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yumemi_codecheck/core/token_storage_provider.dart';
 import 'package:yumemi_codecheck/views/search/search_page.dart';
 
 void main() async {
   await dotenv.load();
   print(dotenv.env['GITHUB_CLIENT_ID']);
+  final container = ProviderContainer();
+  final storage = container.read(accessTokenProvider.notifier);
+  await storage.saveToken('abc123');
+  print('Saved: ${container.read(accessTokenProvider)}');
+  await storage.clearToken();
+  print('Cleared: ${container.read(accessTokenProvider)}');
   runApp(const ProviderScope(child: MyApp()));
 }
 
