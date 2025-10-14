@@ -14,12 +14,25 @@ class LoginAvatarViewModel extends _$LoginAvatarViewModel {
   Future<void> login() async {
     final oauthRepository = ref.read(oauthRepositoryProvider);
     try {
-      final userEntity = await oauthRepository.authorizeAndLogin();
-      state = _mapToLoginState(userEntity);
+      final code = await oauthRepository.authorize();
+      await oauthRepository.fetchAccessToken(code);
+      state = state.copyWith(isLoggedIn: true);
     } on ApiException {
       rethrow;
     } catch (e) {
       throw ApiException('ログイン処理で予期せぬエラーが発生しました: $e');
+    }
+  }
+
+  Future<void> fetchUserProfile() async {
+    final oauthRepository = ref.read(oauthRepositoryProvider);
+    try {
+      final profile = await oauthRepository.fetchUserProfile();
+      state = _mapToLoginState(profile);
+    } on ApiException {
+      rethrow;
+    } catch (e) {
+      throw ApiException('ユーザープロフィールの取得で予期せぬエラーが発生しました: $e');
     }
   }
 
