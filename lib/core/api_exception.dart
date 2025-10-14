@@ -49,7 +49,9 @@ class ApiException implements Exception {
 
     /// GitHubのレートリミット超過エラーかどうかを判定
   static bool _isRateLimitExceeded(DioException e) {
-    if (e.response?.statusCode != 403) return false;
+    if (e.response?.statusCode != 403) {
+      return false;
+    }
     final data = e.response?.data;
     if (data is Map && data['message'] is String) {
       final message = data['message'] as String;
