@@ -11,12 +11,18 @@ final dioClientProvider = Provider<DioClient>((ref) {
   final token = ref.watch(accessTokenProvider);
   final client = DioClient(baseUrl);
 
+  // 既存のAuthorization Interceptorを削除
+  client.dio.interceptors.removeWhere((interceptor) =>
+    interceptor is InterceptorsWrapper);
+
   // 認証ヘッダーを自動付与するInterceptor
   client.dio.interceptors.add(
     InterceptorsWrapper(
       onRequest: (options, handler) {
         if (token != null && token.isNotEmpty) {
           options.headers['Authorization'] = 'Bearer $token';
+        } else {
+          options.headers.remove('Authorization');
         }
         return handler.next(options);
       },
