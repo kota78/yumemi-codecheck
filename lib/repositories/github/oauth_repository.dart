@@ -48,7 +48,7 @@ class OAuthRepository {
     final baseUrl = dotenv.env[AppEnvKeys.baseUrl]!;
     try {
       final response = await _dioClient.post<Map<String, dynamic>>(
-        '$baseUrl/oauth/access_token',
+        '$baseUrl/login/oauth/access_token',
         data: {
           'client_id': clientId,
           'client_secret': clientSecret,
