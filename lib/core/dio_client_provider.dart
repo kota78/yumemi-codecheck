@@ -6,7 +6,7 @@ import 'package:yumemi_codecheck/core/token_storage_provider.dart';
 
 /// 認証付き DioClient Provider
 final dioClientProvider = Provider<DioClient>((ref) {
-  final baseUrl = dotenv.env['GITHUB_API_URL']!;
+  final baseUrl = dotenv.env['API_URL']!;
   final token = ref.watch(accessTokenProvider);
   final client = DioClient(baseUrl);
 
