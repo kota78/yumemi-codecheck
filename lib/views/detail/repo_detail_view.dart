@@ -24,15 +24,18 @@ class RepoDetailPage extends StatelessWidget {
             CircleAvatar(
               radius: 12,
               backgroundImage: NetworkImage(state.avatarUrl),
-              backgroundColor: Colors.transparent, // 画像読み込み中の背景色
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surface, // 画像読み込み中の背景色
             ),
             const SizedBox(height: 20),
             Text(
               state.name,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 height: 1.3, // 行間
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             const SizedBox(height: 20),
@@ -106,9 +109,15 @@ class _IconTextItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, color: Colors.black54, size: 20),
+        Icon(icon, color: Theme.of(context).iconTheme.color, size: 20),
         const SizedBox(width: 8),
-        Text(text, style: const TextStyle(fontSize: 16)),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
       ],
     );
   }
@@ -131,14 +140,24 @@ class _MetricItem extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 20, color: Colors.black87),
+        Icon(icon, size: 20, color: Theme.of(context).iconTheme.color),
         const SizedBox(width: 6),
         Text(
           '$count',
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
         ),
         const SizedBox(width: 6),
-        Text(label, style: const TextStyle(fontSize: 16)),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
       ],
     );
   }
