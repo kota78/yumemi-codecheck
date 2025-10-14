@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:yumemi_codecheck/core/api_exception.dart';
 
 class DioClient {
-
   DioClient(String baseUrl)
     : _dio = Dio(
         BaseOptions(
@@ -26,9 +25,14 @@ class DioClient {
   Future<Response<T>> get<T>(
     String path, {
     Map<String, dynamic>? queryParameters,
+    Options? options,
   }) async {
     try {
-      return await _dio.get<T>(path, queryParameters: queryParameters);
+      return await _dio.get<T>(
+        path,
+        queryParameters: queryParameters,
+        options: options,
+      );
     } on DioException catch (e) {
       throw ApiException.fromDioError(e);
     }
@@ -41,12 +45,14 @@ class DioClient {
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
+    Options? options,
   }) async {
     try {
       return await _dio.post<T>(
         path,
         data: data,
         queryParameters: queryParameters,
+        options: options,
       );
     } on DioException catch (e) {
       throw ApiException.fromDioError(e);
