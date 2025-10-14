@@ -12,8 +12,8 @@ class OAuthRepository {
   final DioClient _dioClient;
   final AccessTokenNotifier _tokenNotifier;
 
-  /// GitHub OAuth フローを開始し、ユーザー情報を返す
-  Future<UserProfileEntity> authorizeAndLogin() async {
+  /// GitHub OAuth 認可画面を開き、認可コードを取得
+  Future<String> authorize() async {
     final clientId = dotenv.env['GITHUB_CLIENT_ID']!;
     final redirectUri = dotenv.env['REDIRECT_URI']!;
     const scope = 'read:user,user:email';
@@ -22,34 +22,29 @@ class OAuthRepository {
         'https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirectUri&scope=$scope';
 
     try {
-      // --- WebでGitHub認証画面を開く ---
       final result = await FlutterWebAuth2.authenticate(
         url: authUrl,
         callbackUrlScheme: Uri.parse(redirectUri).scheme,
       );
 
-      // --- codeを抽出 ---
       final code = Uri.parse(result).queryParameters['code'];
       if (code == null) {
         throw ApiException('認可コードの取得に失敗しました。');
       }
 
-      // --- 認可コードを使ってログイン ---
-      final user = await loginWithCode(code);
-      return user;
+      return code;
     } catch (e) {
-      throw ApiException('GitHubログインに失敗しました: $e');
+      throw ApiException('GitHub認可に失敗しました: $e');
     }
   }
 
-  /// 認可コードを使ってアクセストークンを取得し、ユーザー情報を返す
-  Future<UserProfileEntity> loginWithCode(String code) async {
+  /// 認可コードを使ってアクセストークンを取得・保存
+  Future<String> fetchAccessToken(String code) async {
     final clientId = dotenv.env['GITHUB_CLIENT_ID']!;
     final clientSecret = dotenv.env['GITHUB_CLIENT_SECRET']!;
     final redirectUri = dotenv.env['REDIRECT_URI']!;
 
     try {
-      // --- アクセストークン取得 ---
       final response = await _dioClient.post<Map<String, dynamic>>(
         'https://github.com/login/oauth/access_token',
         data: {
@@ -62,24 +57,31 @@ class OAuthRepository {
       );
 
       final data = response.data;
-      if (data == null || data['access_token'] == null) {
+      final accessToken = data?['access_token'] as String?;
+      if (accessToken == null || accessToken.isEmpty) {
         throw ApiException('アクセストークンの取得に失敗しました。');
       }
 
-      final accessToken = data['access_token'] as String;
-
-      // --- トークンを保存 ---
       await _tokenNotifier.saveToken(accessToken);
-
-      // --- ユーザー情報取得 ---
-      final userResponse = await _dioClient.get<Map<String, dynamic>>('/user');
-      return UserProfileEntity.fromJson(userResponse.data!);
+      return accessToken;
     } on DioException catch (e) {
       throw ApiException.fromDioError(e);
     }
   }
 
-  /// ログアウト
+  /// 現在保存済みのトークンを使ってユーザー情報を取得
+  Future<UserProfileEntity> fetchUserProfile() async {
+    try {
+      final response = await _dioClient.get<Map<String, dynamic>>('/user');
+      return UserProfileEntity.fromJson(response.data!);
+    } on DioException catch (e) {
+      throw ApiException.fromDioError(e);
+    } catch (e) {
+      throw ApiException('ユーザー情報の取得に失敗しました: $e');
+    }
+  }
+
+  /// ログアウト処理（トークン削除）
   Future<void> logout() async {
     await _tokenNotifier.clearToken();
   }
