@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yumemi_codecheck/views/login/login_avatar_view.dart';
+import 'package:yumemi_codecheck/views/search/search_page.dart';
 
 void main() async {
   await dotenv.load();
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginAvatarView(),
+      home: const SearchPage(),
     );
   }
 }

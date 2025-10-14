@@ -5,43 +5,64 @@ import 'package:yumemi_codecheck/view_models/login/login_avatar_view_model.dart'
 class LoginAvatarView extends HookConsumerWidget {
   const LoginAvatarView({super.key});
 
+  Future<void> showConfirmDialog({
+    required BuildContext context,
+    required String title,
+    required VoidCallback onConfirm,
+  }) async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(title),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('いいえ'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('はい'),
+          ),
+        ],
+      ),
+    );
+    if (result ?? false) {
+      onConfirm();
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(loginAvatarViewModelProvider);
     final notifier = ref.read(loginAvatarViewModelProvider.notifier);
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('GitHub Login')),
-      body: Center(
-        child: state.isLoggedIn
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: (state.avatarUrl.isNotEmpty)
-                        ? NetworkImage(state.avatarUrl)
-                        : null,
-                    child: state.avatarUrl.isEmpty
-                        ? const Icon(Icons.person, size: 40)
-                        : null,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(state.name, style: const TextStyle(fontSize: 18)),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: notifier.logout,
-                    child: const Text('ログアウト'),
-                  ),
-                ],
-              )
-            : ElevatedButton(
-                onPressed: () async {
-                  await notifier.login();
-                  await notifier.fetchUserProfile();
-                },
-                child: const Text('GitHubでログイン'),
-              ),
+    return GestureDetector(
+      onTap: () async {
+        if (state.isLoggedIn) {
+          await showConfirmDialog(
+            context: context,
+            title: 'ログアウトしますか？',
+            onConfirm: notifier.onLogout,
+          );
+        } else {
+          await showConfirmDialog(
+            context: context,
+            title: 'ログインしますか？',
+            onConfirm: notifier.onLogin,
+          );
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+        child: CircleAvatar(
+          radius: 28,
+          backgroundImage: (state.avatarUrl.isNotEmpty)
+              ? NetworkImage(state.avatarUrl)
+              : null,
+          child: state.avatarUrl.isEmpty
+              ? const Icon(Icons.person, size: 28)
+              : null,
+        ),
       ),
     );
   }
