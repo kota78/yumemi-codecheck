@@ -37,7 +37,7 @@ jobs:
           echo "API_URL=${{ secrets.API_URL }}" >> .env
           echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> .env
 
-      # コード生成を実行（このステップを追加）
+      # コード生成を実行
       - name: Run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
