@@ -14,7 +14,7 @@ class OAuthRepository {
 
   /// GitHub OAuth 認可画面を開き、認可コードを取得
   Future<String> authorize() async {
-    final clientId = dotenv.env['GITHUB_CLIENT_ID']!;
+    final clientId = dotenv.env['CLIENT_ID']!;
     final redirectUri = dotenv.env['REDIRECT_URI']!;
     const scope = 'read:user,user:email';
 
@@ -40,8 +40,8 @@ class OAuthRepository {
 
   /// 認可コードを使ってアクセストークンを取得・保存
   Future<String> fetchAccessToken(String code) async {
-    final clientId = dotenv.env['GITHUB_CLIENT_ID']!;
-    final clientSecret = dotenv.env['GITHUB_CLIENT_SECRET']!;
+    final clientId = dotenv.env['CLIENT_ID']!;
+    final clientSecret = dotenv.env['CLIENT_SECRET']!;
     final redirectUri = dotenv.env['REDIRECT_URI']!;
 
     try {

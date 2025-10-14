@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -18,7 +19,11 @@ final accessTokenProvider = StateNotifierProvider<AccessTokenNotifier, String?>(
 
 class AccessTokenNotifier extends StateNotifier<String?> {
   AccessTokenNotifier(this._storage) : super(null) {
-    unawaited(_loadToken()); // 初期ロード
+    unawaited(
+      _loadToken().catchError((Object e, StackTrace stack) {
+        debugPrint('Failed to load token: $e');
+      }),
+    ); // 初期ロード
   }
 
   final FlutterSecureStorage _storage;

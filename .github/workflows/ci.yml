@@ -13,6 +13,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # GitHub Secrets から読み込む環境変数を設定
+    env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      BASE_URL: ${{ secrets.BASE_URL }}
+      API_URL: ${{ secrets.API_URL }}
+      REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+
     steps:
       # 1. リポジトリのコードをチェックアウト
       - name: Checkout repository
