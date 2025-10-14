@@ -39,14 +39,26 @@ class SearchBoxView extends HookWidget {
       child: Material(
         elevation: 2,
         borderRadius: BorderRadius.circular(12),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.grey[800]
+            : Theme.of(context).colorScheme.surface,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           height: 56,
+          decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.grey[800]
+                : Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+          ),
           child: Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 4, right: 4),
-                child: Icon(Icons.search, color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.only(left: 4, right: 4),
+                child: Icon(
+                  Icons.search,
+                  color: Theme.of(context).iconTheme.color,
+                ),
               ),
               Expanded(
                 child: TextField(

@@ -62,7 +62,11 @@ class LoginAvatarView extends HookConsumerWidget {
               ? NetworkImage(value.avatarUrl)
               : null,
           child: value.avatarUrl.isEmpty
-              ? const Icon(Icons.person, size: 28)
+              ? Icon(
+                  Icons.person,
+                  size: 28,
+                  color: Theme.of(context).iconTheme.color,
+                )
               : null,
         ),
       ),
