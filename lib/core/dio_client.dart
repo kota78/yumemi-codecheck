@@ -18,6 +18,8 @@ class DioClient {
   }
   final Dio _dio;
 
+  Dio get dio => _dio;
+
   /// GETリクエスト
   ///
   /// 成功した場合は Response T を、失敗した場合は ApiException をスローします。
