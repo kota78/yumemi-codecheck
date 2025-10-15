@@ -9,11 +9,49 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get title => 'ガチャ × Map';
+  String get title => 'リポジトリを検索';
 
   @override
-  String get ratethisapp => 'このアプリをレビューする';
+  String get loginPrompt => 'ログインしますか？';
 
   @override
-  String get privacypolicy => 'プライバシーポリシー';
+  String get logoutPrompt => 'ログアウトしますか？';
+
+  @override
+  String get yes => 'はい';
+
+  @override
+  String get no => 'いいえ';
+
+  @override
+  String get pleaseEnter => '入力してください';
+
+  @override
+  String get enterSearchWord => '検索ワードを入力してください';
+
+  @override
+  String get timeoutError => '接続がタイムアウトしました。';
+
+  @override
+  String serverError(Object code) {
+    return 'サーバーで問題が発生しました。(コード: $code)';
+  }
+
+  @override
+  String clientError(Object code) {
+    return 'リクエストに失敗しました。(コード: $code)';
+  }
+
+  @override
+  String get networkError => 'ネットワークに接続できませんでした。接続状況を確認してください。';
+
+  @override
+  String get rateLimitError =>
+      'リクエスト超過エラーが発生しました。ユーザーアイコンをタップしてログインすることで緩和されます。';
+
+  @override
+  String get cancelError => 'リクエストがキャンセルされました。';
+
+  @override
+  String get unknownError => '予期せぬエラーが発生しました。';
 }

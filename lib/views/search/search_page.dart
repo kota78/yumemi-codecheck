@@ -15,7 +15,7 @@ class SearchPage extends HookConsumerWidget {
     final query = ref.watch(searchPageViewModelProvider);
     return Scaffold(
       appBar: const CustomAppBar(
-        title: 'Search Repository',
+        title: 'Search Repositories',
         userAvatar: LoginAvatarView(),
       ),
       body: Column(

@@ -1,6 +1,17 @@
 {
-  "@@locale":"en",
-  "title":"Capsule Toy × Map",
-  "ratethisapp": "Rate this app",
-  "privacypolicy": "Privacy Policy"
+  "@@locale": "en",
+  "title": "Search Repositories",
+  "loginPrompt": "Do you want to log in?",
+  "logoutPrompt": "Do you want to log out?",
+  "yes": "Yes",
+  "no": "No",
+  "pleaseEnter": "Please enter",
+  "enterSearchWord": "Please enter a search word",
+  "timeoutError": "The connection has timed out.",
+  "serverError": "A server error occurred. (Code: {code})",
+  "clientError": "The request failed. (Code: {code})",
+  "networkError": "Could not connect to the network. Please check your connection.",
+  "rateLimitError": "Rate limit exceeded. You can log in via the user icon to lift restrictions.",
+  "cancelError": "The request was cancelled.",
+  "unknownError": "An unexpected error occurred."
 }

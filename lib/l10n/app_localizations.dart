@@ -101,20 +101,86 @@ abstract class AppLocalizations {
   /// No description provided for @title.
   ///
   /// In en, this message translates to:
-  /// **'Capsule Toy × Map'**
+  /// **'Search Repositories'**
   String get title;
 
-  /// No description provided for @ratethisapp.
+  /// No description provided for @loginPrompt.
   ///
   /// In en, this message translates to:
-  /// **'Rate this app'**
-  String get ratethisapp;
+  /// **'Do you want to log in?'**
+  String get loginPrompt;
 
-  /// No description provided for @privacypolicy.
+  /// No description provided for @logoutPrompt.
   ///
   /// In en, this message translates to:
-  /// **'Privacy Policy'**
-  String get privacypolicy;
+  /// **'Do you want to log out?'**
+  String get logoutPrompt;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
+  /// No description provided for @pleaseEnter.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter'**
+  String get pleaseEnter;
+
+  /// No description provided for @enterSearchWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a search word'**
+  String get enterSearchWord;
+
+  /// No description provided for @timeoutError.
+  ///
+  /// In en, this message translates to:
+  /// **'The connection has timed out.'**
+  String get timeoutError;
+
+  /// No description provided for @serverError.
+  ///
+  /// In en, this message translates to:
+  /// **'A server error occurred. (Code: {code})'**
+  String serverError(Object code);
+
+  /// No description provided for @clientError.
+  ///
+  /// In en, this message translates to:
+  /// **'The request failed. (Code: {code})'**
+  String clientError(Object code);
+
+  /// No description provided for @networkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not connect to the network. Please check your connection.'**
+  String get networkError;
+
+  /// No description provided for @rateLimitError.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate limit exceeded. You can log in via the user icon to lift restrictions.'**
+  String get rateLimitError;
+
+  /// No description provided for @cancelError.
+  ///
+  /// In en, this message translates to:
+  /// **'The request was cancelled.'**
+  String get cancelError;
+
+  /// No description provided for @unknownError.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred.'**
+  String get unknownError;
 }
 
 class _AppLocalizationsDelegate
