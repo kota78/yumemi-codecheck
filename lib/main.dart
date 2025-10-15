@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           ),
     );
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'GitHub Repository Search',
       theme: ThemeData.light().copyWith(
         extensions: [buildPagingTheme()],
       ),
