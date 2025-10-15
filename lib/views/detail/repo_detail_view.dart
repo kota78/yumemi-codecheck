@@ -22,7 +22,7 @@ class RepoDetailPage extends StatelessWidget {
           children: [
             // オーナーアイコン
             CircleAvatar(
-              radius: 12,
+              radius: 24,
               backgroundImage: NetworkImage(state.avatarUrl),
               backgroundColor: Theme.of(
                 context,
