@@ -5,6 +5,11 @@ import 'package:yumemi_codecheck/repositories/github/search/repo_search_reposito
 
 part 'repo_search_repository_provider.g.dart';
 
+/// GitHubリポジトリ検索用のRepositoryを提供するProvider
+///
+/// - 依存関係の注入（DI）を担う
+/// - `DioClient` を注入して `RepoSearchRepository` を生成
+
 @riverpod
 RepoSearchRepository repoSearchRepository(Ref ref) {
   final dioClient = ref.watch(dioClientProvider);
