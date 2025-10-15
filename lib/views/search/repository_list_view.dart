@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_paging_utils/riverpod_paging_utils.dart';
+import 'package:yumemi_codecheck/l10n/app_localizations.dart';
 import 'package:yumemi_codecheck/view_models/search/repo_list_view_model.dart';
 import 'package:yumemi_codecheck/views/detail/detail_page.dart';
 
@@ -13,8 +14,11 @@ class RepoListView extends StatelessWidget {
   Widget build(BuildContext context) {
     // query が空の場合はリストを表示しない
     if (query.isEmpty) {
-      return const Center(
-        child: Text('検索ワードを入力してください'),
+      return Center(
+        child: Text(
+          AppLocalizations.of(context)?.enterSearchWord ??
+              'Please enter a search word',
+        ),
       );
     }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:yumemi_codecheck/l10n/app_localizations.dart';
 
 /// リポジトリ名を検索するためのワードを入力するボックス
 class SearchBoxView extends HookWidget {
@@ -64,11 +65,13 @@ class SearchBoxView extends HookWidget {
                 child: TextField(
                   controller: controller,
                   textInputAction: TextInputAction.search,
-                  decoration: const InputDecoration(
-                    hintText: 'Search repositories',
+                  decoration: InputDecoration(
+                    hintText:
+                        AppLocalizations.of(context)?.hintText ??
+                        'search word',
                     border: InputBorder.none,
                     isDense: true,
-                    contentPadding: EdgeInsets.symmetric(vertical: 14),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   onSubmitted: (value) {
                     onChanged(value.trim());
