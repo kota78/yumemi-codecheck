@@ -14,4 +14,6 @@
   "rateLimitError": "Rate limit exceeded. You can log in via the user icon to lift restrictions.",
   "cancelError": "The request was cancelled.",
   "unknownError": "An unexpected error occurred."
+  "authorizationCodeError": "認可コードの取得に失敗しました。",
+  "accessTokenError": "アクセストークンの取得に失敗しました。",
 }
