@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:yumemi_codecheck/core/api_exception.dart';
-import 'package:yumemi_codecheck/core/token_storage_provider.dart';
+import 'package:yumemi_codecheck/core/data/api_exception.dart';
+import 'package:yumemi_codecheck/core/storage/token_storage_provider.dart';
 import 'package:yumemi_codecheck/models/login/login_state.dart';
 import 'package:yumemi_codecheck/models/login/user_profile_entity.dart';
-import 'package:yumemi_codecheck/repositories/github/oauth_repository_provider.dart';
+import 'package:yumemi_codecheck/repositories/github/login/oauth_repository_provider.dart';
 
 part 'login_avatar_view_model.g.dart';
 

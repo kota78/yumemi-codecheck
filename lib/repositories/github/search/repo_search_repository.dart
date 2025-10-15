@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yumemi_codecheck/core/api_exception.dart';
-import 'package:yumemi_codecheck/core/dio_client.dart';
+import 'package:yumemi_codecheck/core/data/api_exception.dart';
+import 'package:yumemi_codecheck/core/data/dio_client.dart';
 import 'package:yumemi_codecheck/models/search/repo_list_entity.dart';
 
 class RepoSearchRepository {
