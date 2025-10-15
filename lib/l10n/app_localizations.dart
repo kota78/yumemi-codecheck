@@ -128,11 +128,11 @@ abstract class AppLocalizations {
   /// **'No'**
   String get no;
 
-  /// No description provided for @pleaseEnter.
+  /// No description provided for @hintText.
   ///
   /// In en, this message translates to:
-  /// **'Please enter'**
-  String get pleaseEnter;
+  /// **'search word'**
+  String get hintText;
 
   /// No description provided for @enterSearchWord.
   ///

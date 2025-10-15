@@ -24,7 +24,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no => 'No';
 
   @override
-  String get pleaseEnter => 'Please enter';
+  String get hintText => 'search word';
 
   @override
   String get enterSearchWord => 'Please enter a search word';

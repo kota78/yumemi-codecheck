@@ -24,7 +24,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get no => 'いいえ';
 
   @override
-  String get pleaseEnter => '入力してください';
+  String get hintText => '検索ワード';
 
   @override
   String get enterSearchWord => '検索ワードを入力してください';
@@ -43,7 +43,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get networkError => 'ネットワークに接続できませんでした。接続状況を確認してください。';
+  String get networkError => 'ネットワークに接続できませんでした。接続状況を確認してください';
 
   @override
   String get rateLimitError =>

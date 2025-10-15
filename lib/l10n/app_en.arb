@@ -5,7 +5,7 @@
   "logoutPrompt": "Do you want to log out?",
   "yes": "Yes",
   "no": "No",
-  "pleaseEnter": "Please enter",
+  "hintText": "search word",
   "enterSearchWord": "Please enter a search word",
   "timeoutError": "The connection has timed out.",
   "serverError": "A server error occurred. (Code: {code})",
