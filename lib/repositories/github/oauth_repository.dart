@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart' show DioException, Options;
+import 'package:dio/dio.dart' show Options;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:yumemi_codecheck/components/texts/app_env_keys.dart';
@@ -31,12 +31,11 @@ class OAuthRepository {
 
       final code = Uri.parse(result).queryParameters['code'];
       if (code == null) {
-        throw ApiException('認可コードの取得に失敗しました。');
+        throw ApiException(ApiErrorType.authorizationCodeError);
       }
-
       return code;
-    } catch (e) {
-      throw ApiException('GitHub認可に失敗しました: $e');
+    } on ApiException {
+      rethrow;
     }
   }
 
@@ -61,13 +60,13 @@ class OAuthRepository {
       final data = response.data;
       final accessToken = data?['access_token'] as String?;
       if (accessToken == null || accessToken.isEmpty) {
-        throw ApiException('アクセストークンの取得に失敗しました。');
+        throw ApiException(ApiErrorType.accessTokenError);
       }
 
       await _tokenNotifier.saveToken(accessToken);
       return accessToken;
-    } on DioException catch (e) {
-      throw ApiException.fromDioError(e);
+    } on ApiException {
+      rethrow;
     }
   }
 
@@ -76,10 +75,8 @@ class OAuthRepository {
     try {
       final response = await _dioClient.get<Map<String, dynamic>>('/user');
       return UserProfileEntity.fromJson(response.data!);
-    } on DioException catch (e) {
-      throw ApiException.fromDioError(e);
-    } catch (e) {
-      throw ApiException('ユーザー情報の取得に失敗しました: $e');
+    } on ApiException {
+      rethrow;
     }
   }
 

@@ -1,53 +1,62 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class ApiException implements Exception {
-  ApiException(this.message, {this.statusCode});
+/// このアプリで扱うエラーの種類を明示する列挙型
+enum ApiErrorType {
+  timeoutError, // 接続・送受信がタイムアウトした
+  serverError, // サーバー側でエラーが発生した (5xx)
+  clientError, // クライアントリクエストに問題がある (4xx)
+  networkError, // ネットワーク接続に失敗した
+  rateLimitError, // GitHub APIのリクエスト制限を超過した
+  cancelError, // リクエストがキャンセルされた
+  unknownError, // 不明または想定外のエラー
+  authorizationCodeError, // 認可コードの取得に失敗した
+  accessTokenError, // アクセストークンの取得に失敗した
+}
 
-  /// Dioからスローされる多様な例外を、アプリで扱いやすい単一のApiExceptionに変換・集約します。
+
+class ApiException implements Exception {
+  ApiException(this.type, {this.statusCode});
+
+  /// Dioからスローされる多様な例外を、アプリで扱いやすいApiExceptionに変換・集約します。
   /// これにより、Dioへの依存をこの層で食い止め、エラーハンドリングを一元化する責務を担います。
   factory ApiException.fromDioError(DioException error) {
-    String message;
+    ApiErrorType type;
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
-        message = '接続がタイムアウトしました。';
+        type = ApiErrorType.timeoutError;
       case DioExceptionType.badResponse:
         final statusCode = error.response?.statusCode;
         if (statusCode != null && statusCode >= 500) {
-          message = 'サーバーで問題が発生しました。(コード: $statusCode)';
+          type = ApiErrorType.serverError;
         } else if (_isRateLimitExceeded(error)) {
-          message = 'リクエスト超過エラーが発生しました。ユーザーアイコンをタップしてログインすることで緩和されます。';
+          type = ApiErrorType.rateLimitError;
         } else {
-          message = 'リクエストに失敗しました。(コード: $statusCode)';
+          type = ApiErrorType.clientError;
         }
       case DioExceptionType.connectionError:
-        message = 'ネットワークに接続できませんでした。\n接続状況を確認してください。';
+        type = ApiErrorType.networkError;
       case DioExceptionType.cancel:
-        message = 'リクエストがキャンセルされました。';
+        type = ApiErrorType.cancelError;
       case DioExceptionType.badCertificate:
       case DioExceptionType.unknown:
-        message = '予期せぬエラーが発生しました。';
+        type = ApiErrorType.unknownError;
     }
-    final statusCode = error.response?.statusCode;
     final exception = ApiException(
-      message,
-      statusCode: statusCode
+      type,
+      statusCode: error.response?.statusCode,
     );
-
-    debugPrint('⚠️ API Error: ${exception.message} StatusCode: $statusCode');
-
+    debugPrint(
+      '⚠️ API Error: ${type.name} (code: ${error.response?.statusCode})',
+    );
     return exception;
   }
-  final String message;
+  final ApiErrorType type;
   final int? statusCode;
 
-  // エラー時に表示されるメッセージ
-  @override
-  String toString() => message;
-
-    /// GitHubのレートリミット超過エラーかどうかを判定
+  /// GitHubのレートリミット超過エラーかどうかを判定
   static bool _isRateLimitExceeded(DioException e) {
     if (e.response?.statusCode != 403) {
       return false;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yumemi_codecheck/components/custom_app_bar.dart';
 import 'package:yumemi_codecheck/components/search_box_view.dart';
+import 'package:yumemi_codecheck/l10n/app_localizations.dart';
 import 'package:yumemi_codecheck/view_models/search/search_page_view_model.dart';
 import 'package:yumemi_codecheck/views/login/login_avatar_view.dart';
 import 'package:yumemi_codecheck/views/search/repository_list_view.dart';
@@ -14,9 +15,9 @@ class SearchPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final query = ref.watch(searchPageViewModelProvider);
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Search Repository',
-        userAvatar: LoginAvatarView(),
+      appBar: CustomAppBar(
+        title: AppLocalizations.of(context)?.title ?? 'Search Repositories',
+        userAvatar: const LoginAvatarView(),
       ),
       body: Column(
         children: [

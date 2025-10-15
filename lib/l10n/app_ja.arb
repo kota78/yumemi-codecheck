@@ -1,0 +1,19 @@
+{
+  "@@locale": "ja",
+  "title": "リポジトリを検索",
+  "loginPrompt": "ログインしますか？",
+  "logoutPrompt": "ログアウトしますか？",
+  "yes": "はい",
+  "no": "いいえ",
+  "hintText": "検索ワード",
+  "enterSearchWord": "検索ワードを入力してください",
+  "timeoutError": "接続がタイムアウトしました。",
+  "serverError": "サーバーで問題が発生しました。(コード: {code})",
+  "clientError": "リクエストに失敗しました。(コード: {code})",
+  "networkError": "ネットワークに接続できませんでした。接続状況を確認してください",
+  "rateLimitError": "リクエスト超過エラーが発生しました。ユーザーアイコンをタップしてログインすることで緩和されます。",
+  "cancelError": "リクエストがキャンセルされました。",
+  "unknownError": "予期せぬエラーが発生しました。",
+  "authorizationCodeError": "認可コードの取得に失敗しました。",
+  "accessTokenError": "アクセストークンの取得に失敗しました。"
+}

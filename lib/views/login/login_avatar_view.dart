@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yumemi_codecheck/l10n/app_localizations.dart';
 import 'package:yumemi_codecheck/models/login/login_state.dart';
 import 'package:yumemi_codecheck/view_models/login/login_avatar_view_model.dart';
 
@@ -18,11 +19,15 @@ class LoginAvatarView extends HookConsumerWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('いいえ'),
+            child: Text(
+              AppLocalizations.of(context)?.no ?? 'No',
+            ),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('はい'),
+            child: Text(
+              AppLocalizations.of(context)?.yes ?? 'Yes',
+            ),
           ),
         ],
       ),
@@ -43,13 +48,17 @@ class LoginAvatarView extends HookConsumerWidget {
         if (value.isLoggedIn) {
           await showConfirmDialog(
             context: context,
-            title: 'ログアウトしますか？',
+            title:
+                AppLocalizations.of(context)?.logoutPrompt ??
+                'Do you want to log out?',
             onConfirm: notifier.onLogout,
           );
         } else {
           await showConfirmDialog(
             context: context,
-            title: 'ログインしますか？',
+            title:
+                AppLocalizations.of(context)?.loginPrompt ??
+                'Do you want to log in?',
             onConfirm: notifier.onLogin,
           );
         }
