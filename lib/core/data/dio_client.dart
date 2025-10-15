@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:yumemi_codecheck/core/api_exception.dart';
+import 'package:yumemi_codecheck/core/data/api_exception.dart';
 
 class DioClient {
   DioClient(String baseUrl)

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:yumemi_codecheck/components/texts/app_env_keys.dart';
-import 'package:yumemi_codecheck/core/dio_client.dart';
-import 'package:yumemi_codecheck/core/token_storage_provider.dart';
+import 'package:yumemi_codecheck/core/data/dio_client.dart';
+import 'package:yumemi_codecheck/core/storage/token_storage_provider.dart';
 
 /// 認証付き DioClient Provider
 final dioClientProvider = Provider<DioClient>((ref) {

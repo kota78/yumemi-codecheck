@@ -2,9 +2,9 @@ import 'package:dio/dio.dart' show Options;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:yumemi_codecheck/components/texts/app_env_keys.dart';
-import 'package:yumemi_codecheck/core/api_exception.dart';
-import 'package:yumemi_codecheck/core/dio_client.dart';
-import 'package:yumemi_codecheck/core/token_storage_provider.dart';
+import 'package:yumemi_codecheck/core/data/api_exception.dart';
+import 'package:yumemi_codecheck/core/data/dio_client.dart';
+import 'package:yumemi_codecheck/core/storage/token_storage_provider.dart';
 import 'package:yumemi_codecheck/models/login/user_profile_entity.dart';
 
 class OAuthRepository {

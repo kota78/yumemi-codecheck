@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yumemi_codecheck/core/api_exception.dart';
+import 'package:yumemi_codecheck/core/data/api_exception.dart';
 import 'package:yumemi_codecheck/core/extensions/api_error_type_x.dart';
 import 'package:yumemi_codecheck/l10n/app_localizations.dart';
 
