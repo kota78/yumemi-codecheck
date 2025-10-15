@@ -5,7 +5,7 @@ import 'package:yumemi_codecheck/components/search_box_view.dart';
 import 'package:yumemi_codecheck/l10n/app_localizations.dart';
 import 'package:yumemi_codecheck/view_models/search/search_page_view_model.dart';
 import 'package:yumemi_codecheck/views/login/login_avatar_view.dart';
-import 'package:yumemi_codecheck/views/search/repository_list_view.dart';
+import 'package:yumemi_codecheck/views/search/repo_list_view.dart';
 
 /// 検索ページの骨組み
 class SearchPage extends HookConsumerWidget {
