@@ -44,7 +44,7 @@ VM --> State
 State --> View
 
 ```
-設計の詳細は[ARCHITECTURE.md](https://github.com/kota78/yumemi-codecheck/blob/feature/comment/ARCHITECTURE.md)に記載しています。
+設計の詳細は[ARCHITECTURE.md](https://github.com/kota78/yumemi-codecheck/blob/main/ARCHITECTURE.md)に記載しています。
 
 ## 実装した機能
 ### リポジトリ検索
@@ -81,4 +81,4 @@ State --> View
 	- **Android Debug ビルド確認**（`flutter build apk --debug`）
 
 ## スクリーンショット
-[SCREEN_SHOTS.md](https://github.com/kota78/yumemi-codecheck/blob/feature/comment/SCREEN_SHOTS.md)
+[SCREEN_SHOTS.md](https://github.com/kota78/yumemi-codecheck/blob/main/SCREEN_SHOTS.md)
