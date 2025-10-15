@@ -21,7 +21,7 @@ class LoginAvatarViewModel extends _$LoginAvatarViewModel {
       final oauthRepository = ref.read(oauthRepositoryProvider);
       try {
         final profile = await oauthRepository.fetchUserProfile();
-        currentState = _mapToLoginState(profile);
+        currentState = mapToLoginState(profile);
       } on ApiException {
         // 取得失敗時はトークンを破棄
         await ref.read(accessTokenProvider.notifier).clearToken();
@@ -41,8 +41,6 @@ class LoginAvatarViewModel extends _$LoginAvatarViewModel {
       state = AsyncData(current.copyWith(isLoggedIn: true));
     } on ApiException {
       rethrow;
-    } catch (e) {
-      throw ApiException('ログイン処理で予期せぬエラーが発生しました: $e');
     }
   }
 
@@ -50,11 +48,9 @@ class LoginAvatarViewModel extends _$LoginAvatarViewModel {
     final oauthRepository = ref.read(oauthRepositoryProvider);
     try {
       final profile = await oauthRepository.fetchUserProfile();
-      state = AsyncData(_mapToLoginState(profile));
+      state = AsyncData(mapToLoginState(profile));
     } on ApiException {
       rethrow;
-    } catch (e) {
-      throw ApiException('ユーザープロフィールの取得で予期せぬエラーが発生しました: $e');
     }
   }
 
@@ -64,7 +60,7 @@ class LoginAvatarViewModel extends _$LoginAvatarViewModel {
     state = AsyncData(LoginState.initial());
   }
 
-  LoginState _mapToLoginState(UserProfileEntity entity) {
+  LoginState mapToLoginState(UserProfileEntity entity) {
     return LoginState(
       isLoggedIn: true,
       name: entity.login,
