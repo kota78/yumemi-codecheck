@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 
 /// このアプリで扱うエラーの種類を明示する列挙型
 enum ApiErrorType {
-  timeoutError,
-  serverError,
-  clientError,
-  networkError,
-  rateLimitError,
-  cancelError,
-  unknownError,
-  authorizationCodeError, // 認可コードの取得に失敗
-  accessTokenError, // アクセストークンの取得に失敗
+  timeoutError, // 接続・送受信がタイムアウトした
+  serverError, // サーバー側でエラーが発生した (5xx)
+  clientError, // クライアントリクエストに問題がある (4xx)
+  networkError, // ネットワーク接続に失敗した
+  rateLimitError, // GitHub APIのリクエスト制限を超過した
+  cancelError, // リクエストがキャンセルされた
+  unknownError, // 不明または想定外のエラー
+  authorizationCodeError, // 認可コードの取得に失敗した
+  accessTokenError, // アクセストークンの取得に失敗した
 }
+
 
 class ApiException implements Exception {
   ApiException(this.type, {this.statusCode});
