@@ -54,4 +54,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get unknownError => '予期せぬエラーが発生しました。';
+
+  @override
+  String get authorizationCodeError => '認可コードの取得に失敗しました。';
+
+  @override
+  String get accessTokenError => 'アクセストークンの取得に失敗しました。';
 }

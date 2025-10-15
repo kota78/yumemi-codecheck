@@ -55,4 +55,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknownError => 'An unexpected error occurred.';
+
+  @override
+  String get authorizationCodeError =>
+      'Failed to obtain the authorization code.';
+
+  @override
+  String get accessTokenError => 'Failed to retrieve the access token.';
 }

@@ -13,7 +13,7 @@
   "networkError": "Could not connect to the network. Please check your connection.",
   "rateLimitError": "Rate limit exceeded. You can log in via the user icon to lift restrictions.",
   "cancelError": "The request was cancelled.",
-  "unknownError": "An unexpected error occurred."
-  "authorizationCodeError": "認可コードの取得に失敗しました。",
-  "accessTokenError": "アクセストークンの取得に失敗しました。",
+  "unknownError": "An unexpected error occurred.",
+  "authorizationCodeError": "Failed to obtain the authorization code.",
+  "accessTokenError": "Failed to retrieve the access token."
 }

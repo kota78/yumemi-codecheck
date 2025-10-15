@@ -181,6 +181,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred.'**
   String get unknownError;
+
+  /// No description provided for @authorizationCodeError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to obtain the authorization code.'**
+  String get authorizationCodeError;
+
+  /// No description provided for @accessTokenError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to retrieve the access token.'**
+  String get accessTokenError;
 }
 
 class _AppLocalizationsDelegate
